@@ -1,22 +1,21 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
-import '../css/login.css';
+import React from "react";
+import { useNavigate } from "react-router-dom";
+import "../css/login.css";
 
 function Login({ onLogin }) {
-    const navigate = useNavigate(); // Get the history object from React Router
+  const navigate = useNavigate(); // Get the history object from React Router
 
-    const handleSuccessfulLogin = (user) => {
-        console.log(`Hello ${user.firstName}! You are successfully logged in!`);
-        onLogin(user.designation);
-        if(user.designation == 'jobSeeker') {
-            console.log("entered successful login");
-            navigate('/companies'); 
-        }
-        else if(user.designation == 'recruiter') {
-            navigate('/jobSeekers'); 
-        }
-        // Perform the routing to the 'jobSeekers' component after successful login
-    };
+  const handleSuccessfulLogin = (user) => {
+    console.log(`Hello ${user.firstName}! You are successfully logged in!`);
+    onLogin(user.designation);
+    if (user.designation === "jobSeeker") {
+      console.log("entered successful login");
+      navigate("/companies");
+    } else if (user.designation === "recruiter") {
+      navigate("/jobSeekers");
+    }
+    // Perform the routing to the 'jobSeekers' component after successful login
+  };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -39,7 +38,7 @@ function Login({ onLogin }) {
       if (response.ok) {
         const userData = await response.json();
         console.log(userData);
-        alert(`Hello ${userData.firstName}`);
+        // alert(`Hello ${userData.firstName}`);
         handleSuccessfulLogin(userData);
       } else {
         const errorMessage = await response.json();
@@ -80,13 +79,9 @@ function Login({ onLogin }) {
             <button type="submit">LOG IN</button>
           </form>
           <br />
-          <a
-            href="#"
-            onClick={handleForgotPassword}
-            className="forgot-password"
-          >
+          <p onClick={handleForgotPassword} className="forgot-password">
             FORGOT PASSWORD?
-          </a>
+          </p>
         </div>
       </div>
     </div>

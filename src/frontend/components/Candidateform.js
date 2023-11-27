@@ -64,7 +64,7 @@ function CandidateForm() {
       setErrors({ ...errors, resume: "Only PDF files are allowed." });
     }
   };
-  const [submissionStatus, setSubmissionStatus] = useState(null);
+  const [submissionStatus] = useState(null);
   const validateForm = () => {
     let tempErrors = {};
 
@@ -176,7 +176,7 @@ function CandidateForm() {
         onChange={handleInputChange}
       ></textarea>
 
-      <input type="file" onChange={handleFileChange} />
+      <input type="file" placeholder="Resume" onChange={handleFileChange} />
       {errors.resume && <div>{errors.resume}</div>}
 
       <button type="submit">Submit</button>
